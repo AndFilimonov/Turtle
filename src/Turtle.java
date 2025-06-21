@@ -4,6 +4,7 @@ public class Turtle {
     public static void main(String[] args) {
         System.out.println(crossing("urruld"));
         System.out.println(crossing("rulur"));
+        System.out.println(crossing("urxld"));
     }
 
     public static boolean crossing(String route) {
@@ -13,17 +14,12 @@ public class Turtle {
         coordinates.add(x + ";" + y);
         char[] chars = route.toCharArray();
         for (char move : chars) {
-            if (move == 'u') {
-                y++;
-            }
-            if (move == 'd') {
-                y--;
-            }
-            if (move == 'r') {
-                x++;
-            }
-            if (move == 'l') {
-                x--;
+            switch (move) {
+                case 'u': y++; break;
+                case 'd': y--; break;
+                case 'r': x++; break;
+                case 'l': x--; break;
+                default: throw new IllegalArgumentException("Некорректный символ: " + move);
             }
             String coordinate = x + ";" + y;
             if (coordinates.contains(coordinate)) {
